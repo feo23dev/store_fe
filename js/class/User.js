@@ -4,19 +4,21 @@ class User {
   #first_name = undefined;
   #last_name = undefined;
   #created_at = undefined;
+  #token = undefined;
 
   constructor() {
     const userFromSessionStorage = sessionStorage.getItem("User");
     if (userFromSessionStorage) {
       console.log("Yes There is User in Session");
-      const userDataFromStorage = JSON.parse(userFromSessionStorage).data;
+      const userDataFromStorage = JSON.parse(userFromSessionStorage);
       console.log(userDataFromStorage);
 
-      this.#id = userDataFromStorage.id;
-      this.#email = userDataFromStorage.email;
-      this.#first_name = userDataFromStorage.first_name;
-      this.#last_name = userDataFromStorage.last_name;
-      this.#created_at = userDataFromStorage.created_at;
+      this.#id = userDataFromStorage.data.id;
+      this.#email = userDataFromStorage.data.email;
+      this.#first_name = userDataFromStorage.data.first_name;
+      this.#last_name = userDataFromStorage.data.last_name;
+      this.#created_at = userDataFromStorage.data.created_at;
+      this.#token = userDataFromStorage.token;
     }
   }
 
@@ -54,6 +56,8 @@ class User {
       body: userLoginData,
     });
     const json = await response.json();
+
+    console.log("FROM DB", json);
 
     if (!response.ok) {
       console.log("ERROR JSON", json);

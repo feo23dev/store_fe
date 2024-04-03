@@ -15,9 +15,6 @@ loginButton.addEventListener("click", async (event) => {
 
   try {
     const response = await logged_user.login(email, password);
-    console.log("RESPONSE IN LOGIN JS", response);
-
-    console.log("LOGGED_USER", logged_user);
 
     alert(`Welcome ${logged_user.first_name || logged_user.email}`);
   } catch (error) {
