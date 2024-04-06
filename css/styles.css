@@ -13,8 +13,6 @@ h1 {
   text-align: left;
 }
 
-/* END OF PRODUCTS*/
-
 .btn {
   text-align: left;
 }
@@ -27,11 +25,11 @@ h1 {
 }
 
 .container-md {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
 
 .bg-violet {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
 
 input {
@@ -39,7 +37,7 @@ input {
 }
 
 [class*="col-"] {
-  border: solid 2px yellow;
+  /* border: solid 2px yellow; */
 }
 
 .parent-div {
@@ -47,17 +45,17 @@ input {
 }
 
 .products-item img {
-  width: 80%;
-  border: solid 1px red;
+  width: 250px; /* Adjust width as needed */
+  height: 180px;
 }
 
 .products-padding {
-  padding-top: 9.5%;
+  padding-top: 7%;
 }
 
 .item-info-div {
   display: flex;
-  background-color: yellow;
+  /* background-color: yellow; */
   justify-content: space-between;
   padding-left: 10%;
   padding-right: 10%;
@@ -67,7 +65,7 @@ input {
 .products-button {
   border: none; /* Remove default border */
   padding: 5px 10px; /* Adjust padding as needed */
-  background-color: #f0f0f0; /* Set background color, adjust as needed */
+  /* background-color: #f0f0f0; */
   color: #333; /* Set text color, adjust as needed */
   font-size: inherit; /* Inherit font size from parent element */
   cursor: pointer; /* Indicate clickable behavior */
@@ -77,3 +75,12 @@ input {
 .products-button:focus {
   outline: none; /* Remove focus outline */
 }
+
+#products-container {
+  /* background-color: aquamarine; */
+}
+
+#products-link {
+}
+
+/* END OF PRODUCTS*/
