@@ -48,7 +48,7 @@ class Products {
       nameParagraph.textContent = product.product_name.toUpperCase();
 
       const priceParagraph = document.createElement("p");
-      priceParagraph.textContent = product.price;
+      priceParagraph.textContent = product.price + "$";
 
       itemInfoDiv.appendChild(nameParagraph);
       itemInfoDiv.appendChild(priceParagraph);
