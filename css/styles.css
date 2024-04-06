@@ -1,6 +1,79 @@
+:root {
+  font-size: 0.7rem;
+}
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+  background-color: white;
+}
+h1 {
+}
+
+/*  PRODUCTS */
+
+.text-left {
+  text-align: left;
+}
+
+/* END OF PRODUCTS*/
+
+.btn {
+  text-align: left;
+}
+.no-outline {
+  outline: none;
+}
+
+.custom-margin {
+  margin: 5%;
+}
+
+.container-md {
+  background-color: blueviolet;
+}
+
+.bg-violet {
+  background-color: blueviolet;
+}
+
+input {
+  background-color: aliceblue;
+}
+
+[class*="col-"] {
+  border: solid 2px yellow;
+}
+
+.parent-div {
+  text-align: center;
+}
+
+.products-item img {
+  width: 80%;
+  border: solid 1px red;
+}
+
+.products-padding {
+  padding-top: 9.5%;
+}
+
+.item-info-div {
+  display: flex;
+  background-color: yellow;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 2px;
+}
+
+.products-button {
+  border: none; /* Remove default border */
+  padding: 5px 10px; /* Adjust padding as needed */
+  background-color: #f0f0f0; /* Set background color, adjust as needed */
+  color: #333; /* Set text color, adjust as needed */
+  font-size: inherit; /* Inherit font size from parent element */
+  cursor: pointer; /* Indicate clickable behavior */
+  text-align: left;
+}
+
+.products-button:focus {
+  outline: none; /* Remove focus outline */
 }
