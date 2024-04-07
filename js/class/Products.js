@@ -5,10 +5,18 @@
 class Products {
   #backend_url = "http://localhost:5000/api/v1/products";
   #products = [];
-  constructor() {}
+  #state;
+
+  constructor() {
+    this.#state = [];
+  }
 
   getProducts() {
     return this.#products;
+  }
+
+  setState(state) {
+    this.#state = state;
   }
 
   async fetchProducts() {
@@ -17,6 +25,7 @@ class Products {
       const json = await response.json();
       console.log(json);
       this.#products = json.data;
+      this.#state = json.data;
       return json;
     } catch (error) {
       console.log("ERROR FETCHING PRODUCTS", error);
@@ -25,10 +34,12 @@ class Products {
   }
 
   renderProducts() {
-    const products = this.getProducts();
     const products_container = document.getElementById("products-container");
+    products_container.innerHTML = "";
+    const productsToRender = this.#state;
+
     console.log("x", products_container);
-    products.forEach((product) => {
+    productsToRender.forEach((product) => {
       const productItem = document.createElement("div");
       productItem.classList.add(
         "products-item",
@@ -56,6 +67,25 @@ class Products {
       productItem.appendChild(itemInfoDiv);
       products_container.appendChild(productItem);
     });
+  }
+
+  filterProducts(filterWord) {
+    console.log("Filtering by", filterWord);
+
+    const productsToFilter = [...this.#products];
+    let filteredProducts = productsToFilter.filter(
+      (product) => product.category_name == filterWord
+    );
+    if (filterWord === "all") {
+      console.log("yes filter world!");
+      filteredProducts = this.#products;
+      console.log(this.#state, "STATE");
+    }
+
+    this.setState(filteredProducts);
+    this.renderProducts();
+    console.log("Filtered Products", filteredProducts);
+    console.log("this", this);
   }
 }
 

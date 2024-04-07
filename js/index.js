@@ -15,13 +15,3 @@ productsLink.addEventListener("click", (event) => {
   console.log("I am clicked");
   products.renderProducts();
 });
-
-window.onload = async () => {
-  try {
-    const response = await products.fetchProducts();
-    console.log(products, "H");
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
