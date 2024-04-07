@@ -71,6 +71,15 @@ class Products {
       image.src = product.image;
       image.classList.add("img-fluid");
 
+      //  I C O N       W O R K          IS     HERE     //
+      //  <i class="bi bi-search"></i>
+      const icon = document.createElement("i");
+      icon.classList.add("bi", "bi-search", "img-icon");
+
+      productItem.appendChild(icon);
+
+      //   ******  ICON WORK IS HERE *********//
+
       const itemInfoDiv = document.createElement("div");
       itemInfoDiv.classList.add("item-info-div");
 

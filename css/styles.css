@@ -59,8 +59,8 @@ input {
 }
 
 #products-container {
-  background-color: aquamarine;
-  border: solid 2px red;
+  /* background-color: aquamarine;
+  border: solid 2px red; */
   margin-top: 2rem;
 }
 @media (max-width: 770px) {
@@ -69,7 +69,7 @@ input {
   }
 }
 #divdiv {
-  background-color: antiquewhite;
+  background-color: whitesmoke;
 }
 
 #products-link {
@@ -93,6 +93,21 @@ input {
   width: 250px; /* Adjust width as needed */
   height: 180px;
   /* border: 10px solid red; */
+}
+.products-item img:hover {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative; /* Enable positioning for the icon */
+}
+
+.img-icon {
+  position: relative;
+  top: 45%;
+}
+
+.products-item img:hover .img-icon {
+  display: block; /* Show the icon on hover */
 }
 
 @media (max-width: 768px) {
