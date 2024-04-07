@@ -87,6 +87,7 @@ input {
   /* background-color: brown; */
   width: 250px;
   margin: 0.5rem;
+  position: relative;
 }
 
 .products-item img {
@@ -102,11 +103,14 @@ input {
 }
 
 .img-icon {
-  position: relative;
-  top: 45%;
+  position: absolute; /* Position the icon within the image */
+  top: 42%; /* Center the icon vertically */
+  left: 50%; /* Center the icon horizontally */
+  transform: translate(-50%, -50%); /* Fine-tune positioning if needed */
+  display: none; /* Initially hidden */
 }
 
-.products-item img:hover .img-icon {
+.products-item img:hover ~ .img-icon {
   display: block; /* Show the icon on hover */
 }
 
