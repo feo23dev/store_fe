@@ -34,11 +34,22 @@ class Products {
   }
 
   renderProducts() {
+    console.log("RENDER PRODUCTS RUN");
     const products_container = document.getElementById("products-container");
+    const paragraphContainer = document.getElementById("divdiv");
     products_container.innerHTML = "";
-    const productsToRender = this.#state;
 
-    console.log("x", products_container);
+    const productsToRender = this.#state;
+    const quantityParagraph = document.getElementById("quantity-p");
+    const number = this.#state.length;
+    quantityParagraph.textContent = "";
+    quantityParagraph.textContent = number + " items found";
+
+    // productItem.appendChild(quantityParagraph);
+    paragraphContainer.insertBefore(
+      quantityParagraph,
+      paragraphContainer.firstChild
+    );
     productsToRender.forEach((product) => {
       const productItem = document.createElement("div");
       productItem.classList.add(
@@ -70,22 +81,16 @@ class Products {
   }
 
   filterProducts(filterWord) {
-    console.log("Filtering by", filterWord);
-
     const productsToFilter = [...this.#products];
     let filteredProducts = productsToFilter.filter(
       (product) => product.category_name == filterWord
     );
     if (filterWord === "all") {
-      console.log("yes filter world!");
       filteredProducts = this.#products;
-      console.log(this.#state, "STATE");
     }
 
     this.setState(filteredProducts);
     this.renderProducts();
-    console.log("Filtered Products", filteredProducts);
-    console.log("this", this);
   }
 }
 

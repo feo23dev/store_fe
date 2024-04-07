@@ -59,13 +59,17 @@ input {
 }
 
 #products-container {
-  /* background-color: aquamarine;
-  border: solid 2px red; */
+  background-color: aquamarine;
+  border: solid 2px red;
+  margin-top: 2rem;
 }
 @media (max-width: 770px) {
   img {
     width: 100%;
   }
+}
+#divdiv {
+  background-color: antiquewhite;
 }
 
 #products-link {
