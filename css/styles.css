@@ -57,6 +57,10 @@ input {
 .filter-button:focus {
   outline: none; /* Remove focus outline */
 }
+.filter-button.active {
+  background-color: #ddd; /* Light background for active state */
+  color: #333; /* Darker text for better contrast */
+}
 
 #products-container {
   /* background-color: aquamarine;

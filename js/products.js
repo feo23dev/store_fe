@@ -11,9 +11,12 @@ console.log("from products.js", product);
 dropdown.addEventListener("change", () => {
   products.sortProducts();
 });
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
+    filterButtons.forEach((button) => button.classList.remove("active"));
+    button.classList.add("active");
     const filterWord = event.target.innerText.toLowerCase();
 
     products.filterProducts(filterWord);
