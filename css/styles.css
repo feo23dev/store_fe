@@ -109,4 +109,9 @@ input {
   }
 }
 
+#sort-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* END OF PRODUCTS*/

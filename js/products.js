@@ -2,10 +2,15 @@ import Products from "./class/Products.js";
 const products = new Products();
 
 const filterButtons = document.querySelectorAll(".filter-button");
+const dropdown = document.getElementById("sort-dropdown");
+console.log("DROPDROWN", dropdown);
 const product = new Products();
 
 console.log("from products.js", product);
 
+dropdown.addEventListener("change", () => {
+  products.sortProducts();
+});
 filterButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();

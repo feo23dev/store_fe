@@ -45,7 +45,17 @@
         </div>
 
         <div class="col-md-9 pro-col" id="divdiv">
-          <p id="quantity-p"></p>
+          <div id="sort-bar">
+            <p id="quantity-p"></p>
+            <div>
+              <label for="sort-dropdown">Sort by:</label>
+              <select id="sort-dropdown">
+                <option value="price-highest">Price(highest)</option>
+                <option value="price-lowest">Price(lowest)</option>
+              </select>
+            </div>
+          </div>
+
           <div
             class="d-flex justify-content-center flex-wrap parent-div"
             id="products-container"

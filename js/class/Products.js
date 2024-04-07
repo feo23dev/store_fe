@@ -18,6 +18,9 @@ class Products {
   setState(state) {
     this.#state = state;
   }
+  getState() {
+    return this.#state;
+  }
 
   async fetchProducts() {
     try {
@@ -36,10 +39,15 @@ class Products {
   renderProducts() {
     console.log("RENDER PRODUCTS RUN");
     const products_container = document.getElementById("products-container");
-    const paragraphContainer = document.getElementById("divdiv");
+    const paragraphContainer = document.getElementById("sort-bar");
+
     products_container.innerHTML = "";
 
     const productsToRender = this.#state;
+
+    // Sort the productsToRender
+
+    //
     const quantityParagraph = document.getElementById("quantity-p");
     const number = this.#state.length;
     quantityParagraph.textContent = "";
@@ -90,6 +98,23 @@ class Products {
     }
 
     this.setState(filteredProducts);
+    this.sortProducts();
+  }
+
+  sortProducts() {
+    console.log("SORRT PRODUCTS RUN");
+    const dropdown = document.getElementById("sort-dropdown");
+    const sortBy = dropdown.value;
+    const copyState = this.getState();
+    if (sortBy === "price-lowest") {
+      const sortedState = copyState.sort((a, b) => a.price - b.price);
+      this.setState(sortedState);
+    }
+    if (sortBy === "price-highest") {
+      const sortedState = copyState.sort((a, b) => b.price - a.price);
+      this.setState(sortedState);
+    }
+
     this.renderProducts();
   }
 }
