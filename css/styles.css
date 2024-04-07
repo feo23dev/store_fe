@@ -24,14 +24,6 @@ h1 {
   margin: 5%;
 }
 
-.container-md {
-  /* background-color: blueviolet; */
-}
-
-.bg-violet {
-  /* background-color: blueviolet; */
-}
-
 input {
   /* background-color: aliceblue; */
 }
@@ -52,6 +44,9 @@ input {
   font-size: inherit; /* Inherit font size from parent element */
   cursor: pointer; /* Indicate clickable behavior */
   text-align: left;
+}
+.height {
+  height: 1140px;
 }
 
 .filter-button:focus {
