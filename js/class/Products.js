@@ -78,10 +78,13 @@ class Products {
       itemInfoDiv.classList.add("item-info-div");
 
       const nameParagraph = document.createElement("p");
+      nameParagraph.classList.add("product-name");
       nameParagraph.textContent = product.product_name.toUpperCase();
 
       const priceParagraph = document.createElement("p");
-      priceParagraph.textContent = product.price + "$";
+      priceParagraph.classList.add("product-price");
+      const formattedPrice = product.price.slice(0, -1);
+      priceParagraph.textContent = "$" + formattedPrice;
 
       itemInfoDiv.appendChild(nameParagraph);
       itemInfoDiv.appendChild(priceParagraph);
