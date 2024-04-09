@@ -88,23 +88,14 @@ input {
   margin: 0.5rem;
   position: relative;
   display: inline-block; /* Allow products to sit side-by-side */
-  margin: 1rem; /* Spacing between products */
-  width: 250px; /* Adjust width as needed */
-  background-color: #fff; /* Light background */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle box-shadow for depth */
-  border: 1px solid #fffafa; /* Thin border */
-  border-radius: 2px; /* Rounded corners for a softer look */
-  overflow: hidden; /* Prevent image overflow */
-  transition: all 0.2s ease-in-out; /* Smooth hover transition */
 }
 .products-item:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
   transform: translateY(-2px); /* Slight lift on hover */
 }
 .product-name {
-  font-style: italic; /* Highlight product name */
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 5px; /* Spacing between name and price */
 }
 
