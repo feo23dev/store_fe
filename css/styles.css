@@ -116,6 +116,8 @@ input {
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
   position: relative; /* Enable positioning for the icon */
+
+  color: #555;
 }
 
 .img-icon {
@@ -456,7 +458,7 @@ copyright {
 /* for less than 600px  */
 
 @media only screen and (max-width: 600px) {
-  .row {
+  .home-row {
     text-align: center;
   }
 
