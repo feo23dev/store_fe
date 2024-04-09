@@ -159,7 +159,7 @@ input {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .navbar {
@@ -176,7 +176,6 @@ nav {
 nav ul {
   display: inline-block;
   list-style-type: none;
-
 }
 
 nav ul li {
@@ -201,7 +200,7 @@ p {
   padding: 20px;
 }
 
-.row {
+.home-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -292,7 +291,7 @@ p {
 }
 
 .title::after {
-  content: '';
+  content: "";
   background: #ff523b;
   width: 80px;
   height: 5px;
@@ -386,7 +385,6 @@ h4 {
   margin-bottom: 20px;
   font-size: 40px;
   color: #fff;
-
 }
 
 .footer-col-3,
@@ -453,7 +451,6 @@ copyright {
     display: block;
     cursor: pointer;
   }
-
 }
 
 /* for less than 600px  */
@@ -478,4 +475,4 @@ copyright {
   }
 }
 
-/* End of Home Page */  
+/* End of Home Page */
