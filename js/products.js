@@ -1,11 +1,10 @@
 import Products from "./class/Products.js";
+import User from "./class/User.js";
 const products = new Products();
 
 const filterButtons = document.querySelectorAll(".filter-button");
 const dropdown = document.getElementById("sort-dropdown");
 const inputField = document.querySelector(".mb-5");
-
-const product = new Products();
 
 dropdown.addEventListener("change", () => {
   products.sortProducts();

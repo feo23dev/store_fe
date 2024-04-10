@@ -4,6 +4,8 @@ import Products from "./class/Products.js";
 const logged_user = new User();
 const products = new Products();
 
+console.log("Logged User", logged_user);
+
 let hamburgerIcon = document.querySelector(".menu-icon");
 hamburgerIcon.addEventListener("click", menuToggle);
 let MenuItems = document.getElementById("Menu-items");
