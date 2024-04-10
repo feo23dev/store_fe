@@ -3,13 +3,16 @@ const products = new Products();
 
 const filterButtons = document.querySelectorAll(".filter-button");
 const dropdown = document.getElementById("sort-dropdown");
-console.log("DROPDROWN", dropdown);
-const product = new Products();
+const inputField = document.querySelector(".mb-5");
 
-console.log("from products.js", product);
+const product = new Products();
 
 dropdown.addEventListener("change", () => {
   products.sortProducts();
+});
+
+inputField.addEventListener("input", () => {
+  products.searchProducts(inputField.value.toLowerCase());
 });
 
 filterButtons.forEach((button) => {
@@ -23,8 +26,6 @@ filterButtons.forEach((button) => {
   });
 });
 
-console.log("XD", filterButtons);
-console.log("P.JS");
 window.onload = async () => {
   try {
     const response = await products.fetchProducts();
