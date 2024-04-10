@@ -125,6 +125,15 @@ class Products {
 
     this.renderProducts();
   }
+
+  searchProducts(searchWord) {
+    const productsToSearch = [...this.#products];
+    let searchedProducts = productsToSearch.filter((product) =>
+      product.product_name.toLowerCase().includes(searchWord)
+    );
+    this.setState(searchedProducts);
+    this.renderProducts();
+  }
 }
 
 export default Products;
