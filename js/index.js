@@ -1,10 +1,30 @@
 import User from "./class/User.js";
-import Products from "./class/Products.js";
 
 const logged_user = new User();
-const products = new Products();
+const adminLink = document.getElementById("adminLink");
 
-console.log("Logged User", logged_user);
+if (logged_user.getRole === 2) {
+  adminLink.style.display = "block";
+}
+
+adminLink.addEventListener("click", async (event) => {
+  console.log("Link clicked");
+  event.preventDefault();
+  try {
+    const response = await fetch("http://localhost:5000/api/v1/users/admin", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${logged_user.getToken}`,
+      },
+    });
+    const json = await response.json();
+    if (json.status === "success") {
+      window.location.href = "admin.html";
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 let hamburgerIcon = document.querySelector(".menu-icon");
 hamburgerIcon.addEventListener("click", menuToggle);

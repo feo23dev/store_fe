@@ -8,6 +8,7 @@ console.log("User obj", logged_user);
 
 loginButton.addEventListener("click", async (event) => {
   event.preventDefault();
+
   const email = loginEmail.value;
   const password = loginPassword.value;
   console.log("Email: ", email);

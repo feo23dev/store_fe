@@ -5,13 +5,14 @@ class User {
   #last_name = undefined;
   #created_at = undefined;
   #token = undefined;
+  #role = undefined;
 
   constructor() {
-    const userFromSessionStorage = sessionStorage.getItem("User");
-    if (userFromSessionStorage) {
+    const userFromLocalStorage = localStorage.getItem("User");
+    if (userFromLocalStorage) {
       console.log("Yes There is User in Session");
-      const userDataFromStorage = JSON.parse(userFromSessionStorage);
-      console.log(userDataFromStorage);
+      const userDataFromStorage = JSON.parse(userFromLocalStorage);
+      console.log("User from storage", userDataFromStorage);
 
       this.#id = userDataFromStorage.data.id;
       this.#email = userDataFromStorage.data.email;
@@ -19,6 +20,7 @@ class User {
       this.#last_name = userDataFromStorage.data.last_name;
       this.#created_at = userDataFromStorage.data.created_at;
       this.#token = userDataFromStorage.token;
+      this.#role = userDataFromStorage.data.role;
     }
   }
 
@@ -28,6 +30,9 @@ class User {
 
   get email() {
     return this.#email;
+  }
+  get getRole() {
+    return this.#role;
   }
 
   get first_name() {
@@ -40,6 +45,10 @@ class User {
 
   get created_at() {
     return this.#created_at;
+  }
+
+  get getToken() {
+    return this.#token;
   }
 
   async login(email, password) {
@@ -69,7 +78,7 @@ class User {
       this.#last_name = json.data.last_name;
       this.#email = json.data.email;
       this.#created_at = json.data.created_at;
-      sessionStorage.setItem("User", JSON.stringify(json));
+      localStorage.setItem("User", JSON.stringify(json));
 
       return json;
     }

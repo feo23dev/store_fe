@@ -1,0 +1,58 @@
+body {
+  font-family: sans-serif;
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Set minimum body height for viewport coverage */
+}
+
+.container {
+  background-color: #fff; /* Optional background color for the form container */
+  padding: 20px;
+  border-radius: 4px;
+  width: 50%; /* Set form width to half the screen */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  resize: none; /* Disable resize for textarea */
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Responsive Styles (adjust as needed) */
+
+@media (max-width: 768px) {
+  .form-group label {
+    text-align: right;
+  }
+}

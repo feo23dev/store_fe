@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h5>Welcome to the Admin Page</h5>
+      <p>Add new product</p>
+      <form>
+        <div class="form-group">
+          <label for="productName">Product Name:</label>
+          <input type="text" id="productName" name="productName" required />
+        </div>
+        <div class="form-group">
+          <label for="productPrice">Price:</label>
+          <input
+            type="number"
+            id="productPrice"
+            name="productPrice"
+            step="0.01"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="productImage">Product Image:</label>
+          <input type="file" id="productImage" name="productImage" required />
+        </div>
+        <div class="form-group">
+          <label for="productDescription">Description:</label>
+          <textarea
+            id="productDescription"
+            name="productDescription"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group form-group-inline">
+          <label for="companyName">Company Name:</label>
+          <select id="companyName" name="companyName" required>
+            <option value="1">Ikea</option>
+            <option value="2">Marcos</option>
+            <option value="3">LiddY</option>
+            <option value="4">Caressa</option>
+          </select>
+        </div>
+        <div class="form-group form-group-inline">
+          <label for="categoryName">Category Name:</label>
+          <select id="categoryName" name="categoryName" required>
+            <option value="1">Office</option>
+            <option value="2">Livingroom</option>
+            <option value="3">Kitchen</option>
+            <option value="4">Bedroom</option>
+            <option value="5">Dining</option>
+            <option value="6">Kids</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="productStock">Stock:</label>
+          <input type="number" id="productStock" name="productStock" required />
+        </div>
+        <button type="submit" id="addProduct-button">Add Product</button>
+      </form>
+    </div>
+
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
