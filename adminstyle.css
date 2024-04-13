@@ -1,0 +1,44 @@
+body {
+  margin: 0; /* Remove default body margin */
+  font-family: sans-serif; /* Set a default font family */
+}
+
+.container {
+  display: flex; /* Enable flexbox layout for columns */
+  height: 100vh; /* Set container height to 100% viewport height */
+}
+
+.navigation {
+  width: 150px; /* Set width for the navigation column */
+  background-color: #f0f0f0; /* Set background color */
+  padding: 10px; /* Add some padding */
+}
+
+.navigation ul {
+  list-style: none; /* Remove default list style */
+  margin: 0; /* Remove default list margin */
+  padding: 0; /* Remove default list padding */
+}
+
+.navigation a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Set link color */
+  display: block; /* Make links take full width */
+  padding: 10px; /* Add padding for links */
+}
+
+.navigation a:hover {
+  background-color: #eee; /* Add hover effect */
+}
+
+.content-area {
+  flex: 1; /* Make the content area fill remaining space */
+  padding: 20px; /* Add some padding to content */
+}
+
+/* (Optional) Add styles for different content sections */
+#users,
+#add-product,
+#stats {
+  display: none; /* Hide all content sections initially */
+}

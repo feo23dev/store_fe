@@ -1,10 +1,8 @@
 :root {
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
 body {
   background-color: white;
-}
-h1 {
 }
 
 /*  PRODUCTS */
@@ -490,3 +488,12 @@ copyright {
 /* Login Page*/
 
 /* End of Login Page */
+
+/* Begining of Admin Page */
+
+/* End of Admin Page */
+/* General Styles */
+
+/* Form Container Styles */
+
+/* Form Group Styles */

@@ -1,24 +1,26 @@
-const addProduct_button = document.getElementById("addProduct-button");
+const navigationLinks = document.querySelectorAll(".navigation a");
+const contentArea = document.querySelector(".content-area");
 
-addProduct_button.addEventListener("click", async (event) => {
-  event.preventDefault();
-  const product_name = document.getElementById("productName").value;
-  const product_price = document.getElementById("productPrice").value;
-  const product_image = document.getElementById("productImage").value;
-  const product_description =
-    document.getElementById("productDescription").value;
-  const company_name = document.getElementById("companyName").value;
-  const category_name = document.getElementById("categoryName").value;
-  const product_stock = document.getElementById("productStock").value;
-  const data = {
-    name: product_name,
-    price: product_price,
-    image: product_image,
-    description: product_description,
-    company_id: company_name,
-    category_id: category_name,
-    stok: product_stock,
-  };
+// Function to load content from separate HTML files
+function loadContent(contentId) {
+  const url = `${contentId}.html`; // Replace with actual file paths
+  console.log("URL IS", url);
+  fetch(url)
+    .then((response) => response.text())
+    .then((data) => {
+      contentArea.innerHTML = data;
+    })
+    .catch((error) => {
+      console.error("Error fetching content:", error);
+      contentArea.innerHTML = "Error loading content"; // Handle errors gracefully
+    });
+}
 
-  console.log("Form Data", data);
+navigationLinks.forEach((link) => {
+  link.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default link behavior
+
+    const contentId = this.dataset.content;
+    loadContent(contentId);
+  });
 });
