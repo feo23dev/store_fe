@@ -1,7 +1,3 @@
-// import dataArray from "./data.js";
-// console.log("Here");
-// console.log(dataArray);
-
 class Products {
   #backend_url = "http://localhost:5000/api/v1/products";
   #products = [];
@@ -22,6 +18,10 @@ class Products {
     return this.#state;
   }
 
+  addProduct(product) {
+    this.#products.push(product);
+  }
+
   async fetchProducts() {
     try {
       const response = await fetch(this.#backend_url);
@@ -33,6 +33,28 @@ class Products {
     } catch (error) {
       console.log("ERROR FETCHING PRODUCTS", error);
       throw error;
+    }
+  }
+
+  async createProduct(product, userToken) {
+    try {
+      const response = await fetch(`${this.#backend_url}/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: JSON.stringify(product),
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        alert("Product created successfully", json.data);
+        console.log("JSON", json.data);
+        this.addProduct(json.data);
+      }
+    } catch (error) {
+      console.log("ERROR CREATING PRODUCT");
     }
   }
 
