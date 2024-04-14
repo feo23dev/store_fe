@@ -36,15 +36,14 @@ class Products {
     }
   }
 
-  async createProduct(product, userToken) {
+  async createProduct(formData, userToken) {
     try {
       const response = await fetch(`${this.#backend_url}/create`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
-        body: JSON.stringify(product),
+        body: formData,
       });
 
       const json = await response.json();
@@ -55,6 +54,7 @@ class Products {
       }
     } catch (error) {
       console.log("ERROR CREATING PRODUCT");
+      console.log(error);
     }
   }
 

@@ -34,32 +34,39 @@ navigationLinks.forEach((link) => {
 });
 
 function initializeAddProductLogic() {
-  const addProduct_button = document.getElementById("addProduct-button");
+  const form = document.getElementById("addproduct-form");
+  console.log("FORM", form);
 
-  addProduct_button.addEventListener("click", async (event) => {
+  form.addEventListener("submit", async (event) => {
+    const formData = new FormData();
     event.preventDefault();
+
     const product_name = document.getElementById("productName").value;
     const product_price = document.getElementById("productPrice").value;
-    const product_image = document.getElementById("productImage").value;
+    const product_image = document.getElementById("productImage").files[0];
     const product_description =
       document.getElementById("productDescription").value;
     const company_name = document.getElementById("companyName").value;
     const category_name = document.getElementById("categoryName").value;
     const product_stock = document.getElementById("productStock").value;
-    const data = {
-      name: product_name,
-      price: product_price,
-      image: product_image,
-      description: product_description,
-      company_id: company_name,
-      category_id: category_name,
-      stok: product_stock,
-    };
+
+    formData.append("name", product_name);
+    formData.append("image", product_image);
+    formData.append("price", product_price);
+    formData.append("description", product_description);
+    formData.append("company_id", company_name);
+    formData.append("category_id", category_name);
+    formData.append("stok", product_stock);
+
+    for (var key of formData.entries()) {
+      console.log(key[0] + ", " + key[1]);
+    }
 
     try {
-      const response = await products.createProduct(data, userToken);
-      const json = await response.json();
-      console.log("RESPONSE FROM ADDING PRODUCT", json);
+      console.log("THIS IS FORM DATA", formData);
+      const response = await products.createProduct(formData, userToken);
+
+      console.log("RESPONSE FROM ADDING PRODUCT", response);
     } catch (error) {
       console.log("ERROR ADDING PRODUCT", error);
     }
