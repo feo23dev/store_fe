@@ -1,5 +1,6 @@
 class Products {
   #backend_url = "http://localhost:5000/api/v1/products";
+  #img_url = "http://localhost:5000";
   #products = [];
   #state;
 
@@ -90,7 +91,12 @@ class Products {
       );
 
       const image = document.createElement("img");
-      image.src = product.image;
+      // const imageUrl = product.image.replace("../public", "");
+      const imageName = product.image.split("/")[4];
+      console.log("LOL", product.image);
+      image.src = this.#img_url + "/images/products/" + imageName;
+      console.log("IMAGE", image.src);
+
       image.classList.add("img-fluid");
 
       const icon = document.createElement("i");
@@ -103,13 +109,16 @@ class Products {
       nameParagraph.classList.add("product-name");
       nameParagraph.textContent = product.product_name.toUpperCase();
 
+      const priceDiv = document.createElement("div");
+      priceDiv.classList.add("price-div");
       const priceParagraph = document.createElement("p");
       priceParagraph.classList.add("product-price");
-      const formattedPrice = product.price.slice(0, -1);
-      priceParagraph.textContent = "$" + formattedPrice;
+
+      priceParagraph.textContent = "$" + product.price;
 
       itemInfoDiv.appendChild(nameParagraph);
-      itemInfoDiv.appendChild(priceParagraph);
+      priceDiv.appendChild(priceParagraph);
+      itemInfoDiv.appendChild(priceDiv);
       productItem.appendChild(image);
       productItem.appendChild(icon);
       productItem.appendChild(itemInfoDiv);
