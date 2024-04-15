@@ -27,7 +27,7 @@ class Products {
     try {
       const response = await fetch(this.#backend_url);
       const json = await response.json();
-      console.log(json);
+
       this.#products = json.data;
       this.#state = json.data;
       return json;
@@ -50,12 +50,13 @@ class Products {
       const json = await response.json();
       if (response.ok) {
         alert("Product created successfully", json.data);
-        console.log("JSON", json.data);
+
         this.addProduct(json.data);
       }
     } catch (error) {
       console.log("ERROR CREATING PRODUCT");
-      console.log(error);
+
+      throw error;
     }
   }
 
