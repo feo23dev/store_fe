@@ -7,6 +7,10 @@ const navigationLinks = document.querySelectorAll(".navigation a");
 const contentArea = document.querySelector(".content-area");
 
 const userToken = user.getToken;
+if (user.getRole !== "admin") {
+  // redict the user to home page
+  window.location.href = "/";
+}
 
 // Function to load content from separate HTML files
 function loadContent(contentId) {
