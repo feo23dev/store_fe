@@ -44,3 +44,39 @@
     flex-direction: column;
   }
 }
+
+/* Users */
+#user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style table header */
+#user-table th {
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style table rows */
+#user-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style table cells */
+#user-table td {
+  padding: 8px;
+}
+
+/* Style delete button */
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}

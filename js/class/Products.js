@@ -92,11 +92,13 @@ class Products {
       );
 
       const image = document.createElement("img");
-      // const imageUrl = product.image.replace("../public", "");
+      image.addEventListener("click", () => {
+        this.renderProductDetails(product);
+      });
+
       const imageName = product.image.split("/")[4];
-      console.log("LOL", product.image);
+
       image.src = this.#img_url + "/images/products/" + imageName;
-      console.log("IMAGE", image.src);
 
       image.classList.add("img-fluid");
 
@@ -126,6 +128,10 @@ class Products {
 
       products_container.appendChild(productItem);
     });
+  }
+
+  renderProductDetails(product) {
+    console.log("This is the product", product);
   }
 
   filterProducts(filterWord) {

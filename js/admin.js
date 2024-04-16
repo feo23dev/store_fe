@@ -7,7 +7,7 @@ const navigationLinks = document.querySelectorAll(".navigation a");
 const contentArea = document.querySelector(".content-area");
 
 const userToken = user.getToken;
-if (user.getRole !== "admin") {
+if (user.getRole !== 2) {
   // redict the user to home page
   window.location.href = "/";
 }
@@ -20,7 +20,12 @@ function loadContent(contentId) {
     .then((response) => response.text())
     .then((data) => {
       contentArea.innerHTML = data;
-      initializeAddProductLogic();
+      if (url === "addproduct.html") {
+        initializeAddProductLogic();
+      }
+      if (url === "adminusers.html") {
+        initializeUsersLogic();
+      }
     })
     .catch((error) => {
       console.error("Error fetching content:", error);
@@ -39,6 +44,7 @@ navigationLinks.forEach((link) => {
 
 function initializeAddProductLogic() {
   const form = document.getElementById("addproduct-form");
+
   console.log("FORM", form);
 
   form.addEventListener("submit", async (event) => {
@@ -75,4 +81,34 @@ function initializeAddProductLogic() {
       console.log("ERROR ADDING PRODUCT", error);
     }
   });
+}
+
+async function initializeUsersLogic() {
+  console.log("init users logic run");
+  try {
+    const response = await user.getAllUsers();
+    const userList = response.data.users;
+
+    const tableBody = document.getElementById("user-table-body");
+
+    // Loop through each user and create a row in the table
+    userList.forEach((user) => {
+      const row = document.createElement("tr");
+
+      // Populate row cells with user data
+      row.innerHTML = `
+              <td>${user.id}</td>
+              <td>${user.first_name}</td>
+              <td>${user.last_name}</td>
+              <td>${user.email}</td>
+              <td>${user.role_id}</td>
+              <td><button data-id="${user.id}" class="delete-btn">Delete</button></td>
+            `;
+
+      // Append row to the table body
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.log("ERROR GETTING USERS", error);
+  }
 }

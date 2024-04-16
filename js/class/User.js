@@ -83,6 +83,24 @@ class User {
       return json;
     }
   }
+
+  async getAllUsers() {
+    const response = await fetch("http://localhost:5000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.#token}`,
+      },
+    });
+    const json = await response.json();
+    console.log("Users from DB", json);
+
+    if (!response.ok) {
+      throw new Error(json.message);
+    }
+
+    return json;
+  }
 }
 
 export default User;

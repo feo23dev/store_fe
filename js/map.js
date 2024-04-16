@@ -24,7 +24,7 @@ function onLocationFound(e) {
   map.fitBounds(bounds);
   alert(
     "We are approximately " +
-      distance.toFixed(0) / 1000 +
+      (distance / 1000).toFixed(1) +
       " kilometers away from you."
   );
 
