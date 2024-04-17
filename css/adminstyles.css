@@ -89,13 +89,23 @@
 }
 
 .page-number {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 50%;
+  margin: 15px 2px;
+  padding: 4px 10px;
+  border-radius: 10%;
+
   cursor: pointer;
 }
 
 .page-number.active {
   background-color: red;
   color: white;
+}
+
+.admin-prev-next-button {
+  background-color: gray; /* Blue color for button background */
+  color: #fff; /* White color for text */
+  border: none; /* Remove border */
+  padding: 5px 10px; /* Add padding */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Add pointer cursor */
 }

@@ -9,8 +9,6 @@ const contentArea = document.querySelector(".content-area");
 let pageNumber = 0;
 let numberOfItemsPerPage = 5;
 let usersList = [];
-let lowerLimit = 0;
-let higherLimit = pageNumber * numberOfItemsPerPage;
 
 const userToken = user.getToken;
 if (user.getRole !== 2) {
@@ -148,11 +146,13 @@ function renderUserList() {
 
 function createPagination(data) {
   const pagination = document.getElementById("pagination");
+  pagination.classList.add("pagination");
 
   let totalPages = Math.ceil(data.length / numberOfItemsPerPage);
   console.log("We will have this many pages", totalPages);
 
   const previousButton = document.createElement("button");
+  previousButton.classList.add("admin-prev-next-button");
   previousButton.innerHTML = "Previous";
   pagination.appendChild(previousButton);
   previousButton.addEventListener("click", () => {
@@ -166,16 +166,22 @@ function createPagination(data) {
   for (let i = 0; i < totalPages; i++) {
     const pageButton = document.createElement("button");
     pageButton.innerHTML = i + 1;
-    pageButton.classList.add("page-btn");
+    pageButton.classList.add("page-number");
     pageButton.dataset.page = i + 1;
     pagination.appendChild(pageButton);
+    pageButton.addEventListener("click", () => {
+      pageNumber = i;
+      renderUserList();
+    });
   }
 
   const nextButton = document.createElement("button");
+  nextButton.classList.add("admin-prev-next-button");
   nextButton.innerHTML = "Next";
   pagination.appendChild(nextButton);
   nextButton.addEventListener("click", () => {
-    if (pageNumber < totalPages) {
+    console.log("PAGE NUMBER IS, INCREATES", pageNumber);
+    if (pageNumber < totalPages - 1) {
       pageNumber++;
     }
 
@@ -183,5 +189,3 @@ function createPagination(data) {
     renderUserList();
   });
 }
-
-window.onload(initializeUsersLogic);
