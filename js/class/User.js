@@ -101,6 +101,23 @@ class User {
 
     return json;
   }
+
+  async deleteUserById(userId) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/users/delete/${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.#token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("ERROR DELETING USER", error);
+    }
+  }
 }
 
 export default User;

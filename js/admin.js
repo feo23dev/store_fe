@@ -116,7 +116,6 @@ async function initializeUsersLogic() {
   }
 }
 
-let x = 0;
 function renderUserList() {
   const tableBody = document.getElementById("user-table-body");
   tableBody.innerHTML = "";
@@ -140,6 +139,19 @@ function renderUserList() {
 
       // Append row to the table body
       tableBody.appendChild(row);
+      const deleteButton = row.querySelector(".delete-btn");
+      deleteButton.addEventListener("click", async function () {
+        const userId = this.getAttribute("data-id");
+        // Call your delete function or do something with userId
+        try {
+          const response = await user.deleteUserById(userId);
+          console.log("RESPONSE FROM DELETING USER", response);
+          alert("User Deleted Successfully");
+        } catch (error) {
+          console.log(error, "ERROR DELETING USER");
+          alert("COULD NOT DELETE USER");
+        }
+      });
     }
   }
 }
