@@ -6,6 +6,12 @@ const products = new Products();
 const navigationLinks = document.querySelectorAll(".navigation a");
 const contentArea = document.querySelector(".content-area");
 
+let pageNumber = 0;
+let numberOfItemsPerPage = 5;
+let usersList = [];
+let lowerLimit = 0;
+let higherLimit = pageNumber * numberOfItemsPerPage;
+
 const userToken = user.getToken;
 if (user.getRole !== 2) {
   // redict the user to home page
@@ -45,8 +51,6 @@ navigationLinks.forEach((link) => {
 function initializeAddProductLogic() {
   const form = document.getElementById("addproduct-form");
 
-  console.log("FORM", form);
-
   form.addEventListener("submit", async (event) => {
     const formData = new FormData();
     event.preventDefault();
@@ -84,31 +88,100 @@ function initializeAddProductLogic() {
 }
 
 async function initializeUsersLogic() {
-  console.log("init users logic run");
   try {
     const response = await user.getAllUsers();
-    const userList = response.data.users;
+    usersList = response.data.users;
 
-    const tableBody = document.getElementById("user-table-body");
+    createPagination(usersList);
 
-    // Loop through each user and create a row in the table
-    userList.forEach((user) => {
-      const row = document.createElement("tr");
+    // function renderUserList() {
+    //   for (let i = pageNumber - 1; i < numberOfItemsPerPage; i++) {
+    //     const row = document.createElement("tr");
 
-      // Populate row cells with user data
-      row.innerHTML = `
-              <td>${user.id}</td>
-              <td>${user.first_name}</td>
-              <td>${user.last_name}</td>
-              <td>${user.email}</td>
-              <td>${user.role_id}</td>
-              <td><button data-id="${user.id}" class="delete-btn">Delete</button></td>
-            `;
+    //     // Populate row cells with user data
+    //     row.innerHTML = `
+    //             <td>${usersList[i].id}</td>
+    //             <td>${usersList[i].first_name}</td>
+    //             <td>${usersList[i].last_name}</td>
+    //             <td>${usersList[i].email}</td>
+    //             <td>${usersList[i].role_id}</td>
+    //             <td><button data-id="${usersList[i].id}" class="delete-btn">Delete</button></td>
+    //           `;
 
-      // Append row to the table body
-      tableBody.appendChild(row);
-    });
+    //     // Append row to the table body
+    //     tableBody.appendChild(row);
+    //   }
+    // }
+    renderUserList();
   } catch (error) {
     console.log("ERROR GETTING USERS", error);
   }
 }
+
+let x = 0;
+function renderUserList() {
+  const tableBody = document.getElementById("user-table-body");
+  tableBody.innerHTML = "";
+  for (
+    let i = pageNumber * numberOfItemsPerPage;
+    i < pageNumber * numberOfItemsPerPage + 5;
+    i++
+  ) {
+    if (i < usersList.length) {
+      const row = document.createElement("tr");
+
+      // Populate row cells with user data
+      row.innerHTML = `
+            <td>${usersList[i].id}</td>
+            <td>${usersList[i].first_name}</td>
+            <td>${usersList[i].last_name}</td>
+            <td>${usersList[i].email}</td>
+            <td>${usersList[i].role_id}</td>
+            <td><button data-id="${usersList[i].id}" class="delete-btn">Delete</button></td>
+          `;
+
+      // Append row to the table body
+      tableBody.appendChild(row);
+    }
+  }
+}
+
+function createPagination(data) {
+  const pagination = document.getElementById("pagination");
+
+  let totalPages = Math.ceil(data.length / numberOfItemsPerPage);
+  console.log("We will have this many pages", totalPages);
+
+  const previousButton = document.createElement("button");
+  previousButton.innerHTML = "Previous";
+  pagination.appendChild(previousButton);
+  previousButton.addEventListener("click", () => {
+    if (pageNumber > 0) {
+      pageNumber--;
+    }
+
+    renderUserList();
+  });
+
+  for (let i = 0; i < totalPages; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.innerHTML = i + 1;
+    pageButton.classList.add("page-btn");
+    pageButton.dataset.page = i + 1;
+    pagination.appendChild(pageButton);
+  }
+
+  const nextButton = document.createElement("button");
+  nextButton.innerHTML = "Next";
+  pagination.appendChild(nextButton);
+  nextButton.addEventListener("click", () => {
+    if (pageNumber < totalPages) {
+      pageNumber++;
+    }
+
+    console.log("The page number is ,", pageNumber);
+    renderUserList();
+  });
+}
+
+window.onload(initializeUsersLogic);
