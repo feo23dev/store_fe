@@ -145,11 +145,12 @@ function renderUserList() {
         // Call your delete function or do something with userId
         try {
           const response = await user.deleteUserById(userId);
-          console.log("RESPONSE FROM DELETING USER", response);
-          alert("User Deleted Successfully");
+          const json = await response.json();
+          console.log("JSON FROM DELETE", json);
+          alert(json.message);
         } catch (error) {
           console.log(error, "ERROR DELETING USER");
-          alert("COULD NOT DELETE USER");
+          alert(json.message);
         }
       });
     }

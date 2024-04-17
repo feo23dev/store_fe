@@ -114,6 +114,7 @@ class User {
           },
         }
       );
+      return response;
     } catch (error) {
       console.log("ERROR DELETING USER", error);
     }
