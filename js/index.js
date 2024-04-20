@@ -7,6 +7,7 @@ if (logged_user.getRole === 2) {
   adminLink.style.display = "block";
 }
 
+console.log("CURRENTLY LOGGED USER IS", logged_user.email);
 adminLink.addEventListener("click", async (event) => {
   console.log("Link clicked");
   event.preventDefault();

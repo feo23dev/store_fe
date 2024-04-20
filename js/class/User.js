@@ -119,6 +119,38 @@ class User {
       console.log("ERROR DELETING USER", error);
     }
   }
+
+  async signUp(userData) {
+    const userSignUpData = JSON.stringify(userData);
+    console.log("USER SIGN UP DATA", userSignUpData);
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v1/users/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: userSignUpData,
+        }
+      );
+      const json = await response.json();
+      if (response.ok) {
+        console.log("RESP", response);
+
+        this.#id = json.data.id;
+        this.#first_name = json.data.first_name;
+        this.#last_name = json.data.last_name;
+        this.#email = json.data.email;
+        this.#created_at = json.data.created_at;
+        localStorage.setItem("User", JSON.stringify(json));
+      }
+
+      return json;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default User;

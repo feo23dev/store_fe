@@ -14,10 +14,18 @@ loginButton.addEventListener("click", async (event) => {
   console.log("Email: ", email);
   console.log("Password: ", password);
 
+  if (logged_user.email) {
+    console.log("x", logged_user);
+    return alert("Please logout first");
+  }
+
   try {
     const response = await logged_user.login(email, password);
-
-    alert(`Welcome ${logged_user.first_name || logged_user.email}`);
+    if (response.status === "success") {
+      alert(`Welcome ${logged_user.first_name || logged_user.email}`);
+    }
+    // redirect
+    window.location.replace("index.html");
   } catch (error) {
     alert(error);
   }

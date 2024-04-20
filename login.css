@@ -97,3 +97,9 @@ body {
 .register-link p a:hover {
   text-decoration: underline;
 }
+
+#homeref {
+  text-decoration: none;
+  padding: 5px 5px;
+  border-bottom: 1px solid black;
+}

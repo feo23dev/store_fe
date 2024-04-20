@@ -11,10 +11,6 @@ let numberOfItemsPerPage = 5;
 let usersList = [];
 
 const userToken = user.getToken;
-if (user.getRole !== 2) {
-  // redict the user to home page
-  window.location.href = "/";
-}
 
 // Function to load content from separate HTML files
 function loadContent(contentId) {
@@ -38,6 +34,10 @@ function loadContent(contentId) {
 }
 
 navigationLinks.forEach((link) => {
+  if (user.getRole !== 2) {
+    // redict the user to home page
+    window.location.href = "/";
+  }
   link.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -92,24 +92,6 @@ async function initializeUsersLogic() {
 
     createPagination(usersList);
 
-    // function renderUserList() {
-    //   for (let i = pageNumber - 1; i < numberOfItemsPerPage; i++) {
-    //     const row = document.createElement("tr");
-
-    //     // Populate row cells with user data
-    //     row.innerHTML = `
-    //             <td>${usersList[i].id}</td>
-    //             <td>${usersList[i].first_name}</td>
-    //             <td>${usersList[i].last_name}</td>
-    //             <td>${usersList[i].email}</td>
-    //             <td>${usersList[i].role_id}</td>
-    //             <td><button data-id="${usersList[i].id}" class="delete-btn">Delete</button></td>
-    //           `;
-
-    //     // Append row to the table body
-    //     tableBody.appendChild(row);
-    //   }
-    // }
     renderUserList();
   } catch (error) {
     console.log("ERROR GETTING USERS", error);
