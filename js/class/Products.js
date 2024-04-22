@@ -93,7 +93,11 @@ class Products {
 
       const image = document.createElement("img");
       image.addEventListener("click", () => {
-        this.renderProductDetails(product);
+        const encodedProductData = encodeURIComponent(JSON.stringify(product));
+        // Navigate to single_product.html with the product data encoded in the URL
+        window.location.href = `single_product.html?product=${encodedProductData}`;
+        // window.location.href = "single_product.html";
+        // this.renderProductDetails(product);
       });
 
       const imageName = product.image.split("/")[4];
@@ -131,7 +135,75 @@ class Products {
   }
 
   renderProductDetails(product) {
-    console.log("This is the product", product);
+    console.log("XXXX", product);
+
+    // Create card elements
+    var cardWrapper = document.getElementById("card-wrapper");
+
+    var card = document.createElement("div");
+    card.classList.add("card");
+
+    var productImgs = document.createElement("div");
+    productImgs.classList.add("product-imgs");
+
+    var imgDisplay = document.createElement("div");
+    imgDisplay.classList.add("img-display");
+
+    var imgShowcase = document.createElement("div");
+    imgShowcase.classList.add("img-showcase");
+
+    var img = document.createElement("img");
+    img.src = product.image;
+    img.alt = "image";
+
+    imgShowcase.appendChild(img);
+    imgDisplay.appendChild(imgShowcase);
+    productImgs.appendChild(imgDisplay);
+
+    var productContent = document.createElement("div");
+    productContent.classList.add("product-content");
+
+    var productTitle = document.createElement("h2");
+    productTitle.classList.add("product-title");
+    productTitle.textContent = "Q STORE";
+
+    var productLink = document.createElement("a");
+    productLink.classList.add("product-link");
+    productLink.href = "#";
+    productLink.textContent = "visit Q store";
+
+    var productPrice = document.createElement("div");
+    productPrice.classList.add("product-price");
+    productPrice.innerHTML = "<p>" + product.price + "</p>";
+
+    var productDetail = document.createElement("div");
+    productDetail.classList.add("product-detail");
+    productDetail.innerHTML =
+      "<h2>about this item:</h2><h3>" +
+      product.product_name +
+      "</h3><p>" +
+      product.description +
+      "</p><ul><li>Category: <span>" +
+      product.category_name +
+      "</span></li><li>Company: <span>" +
+      product.company_name +
+      "</span></li></ul>";
+
+    var purchaseInfo = document.createElement("div");
+    purchaseInfo.classList.add("purchase-info");
+    purchaseInfo.innerHTML =
+      "<input type='number' min='0' value='1' /><button type='button' class='btn'>Add to Cart <i class='fas fa-shopping-cart'></i></button>";
+
+    productContent.appendChild(productTitle);
+    productContent.appendChild(productLink);
+    productContent.appendChild(productPrice);
+    productContent.appendChild(productDetail);
+    productContent.appendChild(purchaseInfo);
+
+    card.appendChild(productImgs);
+    card.appendChild(productContent);
+
+    cardWrapper.appendChild(card);
   }
 
   filterProducts(filterWord) {
