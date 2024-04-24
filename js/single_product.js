@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return null;
   }
   const singleProductData = getProductData();
+  console.log("Single Product Data", singleProductData);
 
   products.renderProductDetails(singleProductData);
+  console.log("URL is", singleProductData.image);
 
   // Function to render the product details
 });

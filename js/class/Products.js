@@ -1,3 +1,4 @@
+import ShoppingCart from "./ShoppingCart.js";
 class Products {
   #backend_url = "http://localhost:5000/api/v1/products";
   #img_url = "http://localhost:5000";
@@ -6,11 +7,14 @@ class Products {
 
   constructor() {
     this.#state = [];
+    const cart = new ShoppingCart();
   }
 
   getProducts() {
     return this.#products;
   }
+
+  addToShoppingCart(product) {}
 
   setState(state) {
     this.#state = state;
@@ -134,76 +138,92 @@ class Products {
     });
   }
 
-  renderProductDetails(product) {
-    console.log("XXXX", product);
+  async renderProductDetails(product) {
+    console.log("Product id", product.id);
 
-    // Create card elements
-    var cardWrapper = document.getElementById("card-wrapper");
+    try {
+      const productFromDB = await this.getProductById(product.id); // Create card elements
+      const productDb = productFromDB.data[0];
+      var cardWrapper = document.getElementById("card-wrapper");
 
-    var card = document.createElement("div");
-    card.classList.add("card");
+      var card = document.createElement("div");
+      card.classList.add("card");
 
-    var productImgs = document.createElement("div");
-    productImgs.classList.add("product-imgs");
+      var productImgs = document.createElement("div");
+      productImgs.classList.add("product-imgs");
 
-    var imgDisplay = document.createElement("div");
-    imgDisplay.classList.add("img-display");
+      var imgDisplay = document.createElement("div");
+      imgDisplay.classList.add("img-display");
 
-    var imgShowcase = document.createElement("div");
-    imgShowcase.classList.add("img-showcase");
+      var imgShowcase = document.createElement("div");
+      imgShowcase.classList.add("img-showcase");
 
-    var img = document.createElement("img");
-    img.src = product.image;
-    img.alt = "image";
+      var img = document.createElement("img");
 
-    imgShowcase.appendChild(img);
-    imgDisplay.appendChild(imgShowcase);
-    productImgs.appendChild(imgDisplay);
+      const imageName = product.image.split("/")[4];
 
-    var productContent = document.createElement("div");
-    productContent.classList.add("product-content");
+      img.src = this.#img_url + "/images/products/" + imageName;
 
-    var productTitle = document.createElement("h2");
-    productTitle.classList.add("product-title");
-    productTitle.textContent = "Q STORE";
+      img.alt = "image";
 
-    var productLink = document.createElement("a");
-    productLink.classList.add("product-link");
-    productLink.href = "#";
-    productLink.textContent = "visit Q store";
+      imgShowcase.appendChild(img);
+      imgDisplay.appendChild(imgShowcase);
+      productImgs.appendChild(imgDisplay);
 
-    var productPrice = document.createElement("div");
-    productPrice.classList.add("product-price");
-    productPrice.innerHTML = "<p>" + product.price + "</p>";
+      var productContent = document.createElement("div");
+      productContent.classList.add("product-content");
 
-    var productDetail = document.createElement("div");
-    productDetail.classList.add("product-detail");
-    productDetail.innerHTML =
-      "<h2>about this item:</h2><h3>" +
-      product.product_name +
-      "</h3><p>" +
-      product.description +
-      "</p><ul><li>Category: <span>" +
-      product.category_name +
-      "</span></li><li>Company: <span>" +
-      product.company_name +
-      "</span></li></ul>";
+      var productTitle = document.createElement("h2");
+      productTitle.classList.add("product-title");
+      productTitle.textContent = "Q STORE";
 
-    var purchaseInfo = document.createElement("div");
-    purchaseInfo.classList.add("purchase-info");
-    purchaseInfo.innerHTML =
-      "<input type='number' min='0' value='1' /><button type='button' class='btn'>Add to Cart <i class='fas fa-shopping-cart'></i></button>";
+      var productLink = document.createElement("a");
+      productLink.classList.add("product-link");
+      productLink.href = "#";
+      productLink.textContent = "visit Q store";
 
-    productContent.appendChild(productTitle);
-    productContent.appendChild(productLink);
-    productContent.appendChild(productPrice);
-    productContent.appendChild(productDetail);
-    productContent.appendChild(purchaseInfo);
+      var productPrice = document.createElement("div");
+      productPrice.classList.add("product-price");
+      productPrice.innerHTML = "<p>" + "$ " + product.price + "</p>";
 
-    card.appendChild(productImgs);
-    card.appendChild(productContent);
+      var productDetail = document.createElement("div");
+      productDetail.classList.add("product-detail");
+      productDetail.innerHTML =
+        "<h2>about this item:</h2><h3>" +
+        productDb.product_name +
+        "</h3><p>" +
+        productDb.description +
+        "</p><ul><li>Category: <span >" +
+        productDb.category_name.toUpperCase() +
+        "</span></li><li>Company: <span>" +
+        productDb.company_name.toUpperCase() +
+        "</span></li></ul>";
 
-    cardWrapper.appendChild(card);
+      var purchaseInfo = document.createElement("div");
+      purchaseInfo.classList.add("purchase-info");
+      purchaseInfo.innerHTML =
+        "<button type='button' class='btn' id='addtocartbutton'>Add to Cart <i class='fas fa-shopping-cart'></i></button>";
+
+      const addToCartButton = document.getElementById("addtocartbutton");
+      // addToCartButton.addEventListener("click", () => {
+      //   console.log("Button Clicked! AND PRODUCT IS ADDED", product);
+      //   cart.addItemToCart(product);
+      // });
+      productContent.appendChild(productTitle);
+      productContent.appendChild(productLink);
+      productContent.appendChild(productPrice);
+      productContent.appendChild(productDetail);
+      productContent.appendChild(purchaseInfo);
+
+      card.appendChild(productImgs);
+      card.appendChild(productContent);
+
+      cardWrapper.appendChild(card);
+
+      console.log("PRODUCT CAME FROM DATABASE", product);
+    } catch (error) {
+      console.log("ERROR FETCHING PRODUCT BY ID", error);
+    }
   }
 
   filterProducts(filterWord) {
@@ -243,6 +263,17 @@ class Products {
     );
     this.setState(searchedProducts);
     this.renderProducts();
+  }
+
+  async getProductById(id) {
+    try {
+      const response = await fetch(`${this.#backend_url}/${id}`);
+      const json = await response.json();
+      console.log("ITEM FROM", json);
+      return json;
+    } catch (error) {
+      console.log("ERROR FETCHING PRODUCT BY ID", error);
+    }
   }
 }
 
