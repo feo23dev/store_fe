@@ -24,3 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to render the product details
 });
+
+let iconCart = document.querySelector(".icon-cart");
+let body = document.querySelector("body");
+
+iconCart.addEventListener("click", function () {
+  console.log("CLICKED");
+  body.classList.toggle("showCart");
+});
+
+console.log("ICONNNNNNNNNNNNNN", iconCart);

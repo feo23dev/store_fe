@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap'); */
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"); */
 
 * {
   box-sizing: border-box;
@@ -9,6 +9,7 @@
 
 body {
   line-height: 1.5;
+  display: flex;
 }
 
 .card-wrapper {
@@ -146,7 +147,7 @@ img {
 .product-detail ul li {
   margin: 0;
   list-style: none;
-  background: url(images/checked.png) left center no-repeat;
+
   background-size: 18px;
   padding-left: 1.7rem;
   margin: 0.4rem 0;
@@ -242,5 +243,107 @@ img {
 
   .product-content {
     padding-top: 0;
+  }
+
+  /*Cart*/
+  .icon-cart {
+    margin-top: 110px;
+  }
+
+  .container {
+    max-width: 90vw;
+    margin: auto;
+    transition: transform 2s;
+  }
+
+  icon-cart {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+  }
+
+  .cartTab {
+    width: 400px;
+    background-color: rgb(245, 204, 200);
+    color: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    inset: 0 -400px 0 auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    transition: 2s;
+  }
+
+  .cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .cartTab .btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cartTab .btn button {
+    background-color: pink;
+    border: none;
+    font-family: Poppins;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .cartTab .btn button:hover {
+    background-color: pink;
+  }
+  body.showCart .cartTab {
+    inset: 0 0 0 auto;
+  }
+  body.showCart .container {
+    transform: translateX(-250px);
+  }
+
+  .cartTab .listCart .item img {
+    width: 100%;
+  }
+  .cartTab .listCart .item {
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+
+  .listCart .quantity span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    color: #555;
+
+    cursor: pointer;
+  }
+  .listCart .quantity {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .listCart quantity span:nth-child(2) {
+    background-color: transparent;
+    color: #eee;
+  }
+  .listcart.item:nth-child(even) {
+    background-color: #eee1;
+  }
+  .listCart {
+    overflow: auto;
+  }
+  .listCart::-webkit-scrollbar {
+    width: 0;
   }
 }

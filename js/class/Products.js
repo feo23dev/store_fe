@@ -7,7 +7,7 @@ class Products {
 
   constructor() {
     this.#state = [];
-    const cart = new ShoppingCart();
+    this.cart = new ShoppingCart();
   }
 
   getProducts() {
@@ -179,7 +179,7 @@ class Products {
 
       var productLink = document.createElement("a");
       productLink.classList.add("product-link");
-      productLink.href = "#";
+      productLink.href = "/";
       productLink.textContent = "visit Q store";
 
       var productPrice = document.createElement("div");
@@ -204,11 +204,6 @@ class Products {
       purchaseInfo.innerHTML =
         "<button type='button' class='btn' id='addtocartbutton'>Add to Cart <i class='fas fa-shopping-cart'></i></button>";
 
-      const addToCartButton = document.getElementById("addtocartbutton");
-      // addToCartButton.addEventListener("click", () => {
-      //   console.log("Button Clicked! AND PRODUCT IS ADDED", product);
-      //   cart.addItemToCart(product);
-      // });
       productContent.appendChild(productTitle);
       productContent.appendChild(productLink);
       productContent.appendChild(productPrice);
@@ -219,11 +214,11 @@ class Products {
       card.appendChild(productContent);
 
       cardWrapper.appendChild(card);
-
-      console.log("PRODUCT CAME FROM DATABASE", product);
-    } catch (error) {
-      console.log("ERROR FETCHING PRODUCT BY ID", error);
-    }
+      const addToCartButton = document.getElementById("addtocartbutton");
+      addToCartButton.addEventListener("click", () => {
+        this.cart.addItemToCart(product);
+      });
+    } catch (error) {}
   }
 
   filterProducts(filterWord) {
@@ -240,7 +235,6 @@ class Products {
   }
 
   sortProducts() {
-    console.log("SORRT PRODUCTS RUN");
     const dropdown = document.getElementById("sort-dropdown");
     const sortBy = dropdown.value;
     const copyState = this.getState();
@@ -269,7 +263,7 @@ class Products {
     try {
       const response = await fetch(`${this.#backend_url}/${id}`);
       const json = await response.json();
-      console.log("ITEM FROM", json);
+
       return json;
     } catch (error) {
       console.log("ERROR FETCHING PRODUCT BY ID", error);

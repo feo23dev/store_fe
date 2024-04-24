@@ -15,7 +15,50 @@
   </head>
 
   <body>
-    <div class="card-wrapper" id="card-wrapper"></div>
+    <div class="showCard">
+      <div class="container">
+        <div class="card-wrapper" id="card-wrapper"></div>
+      </div>
+    </div>
+    <div class="icon-cart">
+      <svg
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="50"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
+        />
+      </svg>
+    </div>
+
+    <div class="cartTab">
+      <h1>Shopping Cart</h1>
+      <div class="listCart">
+        <div class="item">
+          <img src="https://via.placeholder.com/150" alt="product" />
+          <div class="name">Name</div>
+          <div class="price">Price</div>
+          <div class="quantity">
+            <span class="minus">-</span>
+            <span>1</span>
+            <span class="plus"></span>
+          </div>
+        </div>
+      </div>
+      <div class="btn">
+        <button class="btn-close">Close</button>
+        <button class="checkOut">CheckOut</button>
+      </div>
+    </div>
 
     <script src="js/single_product.js" type="module"></script>
   </body>
