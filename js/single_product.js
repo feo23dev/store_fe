@@ -1,5 +1,10 @@
 import Products from "./class/Products.js";
+import ShoppingCart from "./class/ShoppingCart.js";
+const shoppingCart = new ShoppingCart();
+
 const products = new Products();
+const cartItems = shoppingCart.items;
+console.log("Cart Items", cartItems);
 document.addEventListener("DOMContentLoaded", function () {
   // Function to retrieve URL parameters
   function getUrlParams() {
@@ -17,20 +22,23 @@ document.addEventListener("DOMContentLoaded", function () {
     return null;
   }
   const singleProductData = getProductData();
-  console.log("Single Product Data", singleProductData);
 
   products.renderProductDetails(singleProductData);
-  console.log("URL is", singleProductData.image);
 
   // Function to render the product details
 });
 
 let iconCart = document.querySelector(".icon-cart");
 let body = document.querySelector("body");
+let closeCart = document.querySelector(".btn-close");
 
 iconCart.addEventListener("click", function () {
-  console.log("CLICKED");
   body.classList.toggle("showCart");
+  shoppingCart.renderData();
 });
+
+// closeCart.addEventListener("click", function () {
+//   body.classList.toggle("showCart");
+// });
 
 console.log("ICONNNNNNNNNNNNNN", iconCart);

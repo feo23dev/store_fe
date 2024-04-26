@@ -140,6 +140,7 @@ class Products {
 
   async renderProductDetails(product) {
     console.log("Product id", product.id);
+    let body = document.querySelector("body");
 
     try {
       const productFromDB = await this.getProductById(product.id); // Create card elements
@@ -175,12 +176,12 @@ class Products {
 
       var productTitle = document.createElement("h2");
       productTitle.classList.add("product-title");
-      productTitle.textContent = "Q STORE";
+      productTitle.textContent = "RED STORE";
 
       var productLink = document.createElement("a");
       productLink.classList.add("product-link");
       productLink.href = "/";
-      productLink.textContent = "visit Q store";
+      productLink.textContent = "visit Red store";
 
       var productPrice = document.createElement("div");
       productPrice.classList.add("product-price");
@@ -217,6 +218,8 @@ class Products {
       const addToCartButton = document.getElementById("addtocartbutton");
       addToCartButton.addEventListener("click", () => {
         this.cart.addItemToCart(product);
+        body.classList.add("showCart");
+        this.cart.renderData();
       });
     } catch (error) {}
   }
