@@ -255,34 +255,36 @@ img {
 
   .container {
     max-width: 90vw;
+
     margin: auto;
+    text-align: center;
     transition: transform 2s;
   }
 
   .icon-cart {
     display: block;
-    position: relative;
+    position: absolute;
     width: 30px;
     height: 30px;
-
     position: absolute;
     right: 120px; /* Adjust this value to position the icon initially */
     top: 0;
-    transition: left 0.5s ease;
+    transition: left 2s ease;
   }
 
   .cartTab {
-    width: 400px;
-    background-color: #e3e3e3;
+    width: 30%;
+    background-color: #fcfefe;
     color: black;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    inset: 0 -400px 0 auto;
+    inset: 0 -800px 0 auto;
     display: grid;
     grid-template-rows: 70px 1fr 70px;
     transition: 2s;
+    box-shadow: #000 0 0 50px;
   }
 
   .cartTab h1 {
@@ -298,20 +300,24 @@ img {
   }
 
   .total-p {
-    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: x-large;
+    font-style: bold;
   }
   .cartTab .btn button {
     border: none;
-    font-family: Poppins;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-weight: 500;
     cursor: pointer;
     width: 100%;
-    height: 100%;
+    height: 100px;
+    font-size: x-large;
+    background-color: #252525;
+    color: white;
   }
 
   .cartTab .btn button:hover {
-    background-color: white;
-    color: black;
+    opacity: 0.5;
   }
   body.showCart .cartTab {
     inset: 0 0 0 auto;
@@ -322,15 +328,16 @@ img {
 
   .cartTab .listCart .item img {
     width: 100%;
+    height: 60px;
   }
   .cartTab .listCart .item {
+    border-top: 1px solid black;
     display: grid;
-    grid-template-columns: 70px 150px 50px 1fr;
-    gap: 10px;
+    grid-template-columns: 70px 150px 1fr 80px;
+    gap: 5px;
     text-align: center;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid black;
   }
   .empty-card {
     display: grid;
@@ -357,8 +364,8 @@ img {
     cursor: pointer;
   }
   .listCart .quantity {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
   }
 
   .listCart quantity span:nth-child(2) {

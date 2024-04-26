@@ -30,15 +30,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 let iconCart = document.querySelector(".icon-cart");
 let body = document.querySelector("body");
-let closeCart = document.querySelector(".btn-close");
 
+let checkOut = document.querySelector(".checkOut");
 iconCart.addEventListener("click", function () {
   body.classList.toggle("showCart");
   shoppingCart.renderData();
 });
 
-// closeCart.addEventListener("click", function () {
-//   body.classList.toggle("showCart");
-// });
+checkOut.addEventListener("click", function () {
+  window.location.href = "forgot_password.html";
+});
 
 console.log("ICONNNNNNNNNNNNNN", iconCart);

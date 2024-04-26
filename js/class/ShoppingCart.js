@@ -52,7 +52,7 @@ class ShoppingCart {
   renderData() {
     let listProducts = document.querySelector(".listCart");
     let total = document.querySelector(".total-p");
-    total.textContent = "TOTAL " + "$" + this.total;
+    total.textContent = "TOTAL : " + "$" + this.total;
     listProducts.innerHTML = "";
     if (this.items.length === 0) {
       listProducts.innerHTML = ` <h2 class="empty-card">Your cart is empty</h2>`;
@@ -97,8 +97,10 @@ class ShoppingCart {
           this.renderData();
         });
 
-        let quantity = document.createElement("div");
-        quantity.classList.add("quantity");
+        let quantityDiv = document.createElement("div");
+        let quantity = document.createElement("span");
+
+        quantityDiv.classList.add("quantity");
         quantity.textContent = product.amount;
 
         let plusSpan = document.createElement("span");
@@ -110,10 +112,10 @@ class ShoppingCart {
           this.renderData();
         });
 
-        quantity.appendChild(minusSpan);
-        newProduct.appendChild(quantity);
-        quantity.appendChild(plusSpan);
-
+        quantityDiv.appendChild(minusSpan);
+        quantityDiv.appendChild(quantity);
+        quantityDiv.appendChild(plusSpan);
+        newProduct.appendChild(quantityDiv);
         listProducts.appendChild(newProduct);
         localStorage.setItem("shoppingCart", JSON.stringify(this.items));
       }

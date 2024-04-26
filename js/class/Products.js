@@ -180,8 +180,8 @@ class Products {
 
       var productLink = document.createElement("a");
       productLink.classList.add("product-link");
-      productLink.href = "/";
-      productLink.textContent = "visit Red store";
+      productLink.href = "/products.html";
+      productLink.textContent = " BACK TO PRODUCTS";
 
       var productPrice = document.createElement("div");
       productPrice.classList.add("product-price");
