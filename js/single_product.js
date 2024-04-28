@@ -38,7 +38,7 @@ iconCart.addEventListener("click", function () {
 });
 
 checkOut.addEventListener("click", function () {
-  window.location.href = "forgot_password.html";
+  window.location.href = "checkout.html";
 });
 
 console.log("ICONNNNNNNNNNNNNN", iconCart);
