@@ -22,8 +22,14 @@ class Checkout {
 
       // Create img element with class "item__img" and set src and alt attributes
       const imgElement = document.createElement("img");
+
+      const imageName = item.image.split("/")[4];
+
+      imgElement.src =
+        "http://localhost:5000" + "/images/products/" + imageName;
+
       imgElement.classList.add("item__img");
-      imgElement.src = "images/1.jpg";
+      // imgElement.src = "images/1.jpg";
       imgElement.alt = item.product_name;
 
       // Create figcaption element with class "item__figure__figcaption" and text content

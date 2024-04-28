@@ -251,6 +251,7 @@ img {
   }
 
   .sbody {
+    overflow: hidden; /* Prevent scrolling */
   }
 
   .container {
@@ -264,21 +265,25 @@ img {
   .icon-cart {
     display: block;
     position: absolute;
-    width: 30px;
-    height: 30px;
-    position: absolute;
+    /* width: 30px;
+    height: 30px; */
     right: 120px; /* Adjust this value to position the icon initially */
     top: 0;
-    transition: left 2s ease;
+    transition: right 2s ease;
+  }
+  .showCart .icon-cart {
+    right: calc(
+      40% - 30px
+    ); /* Adjust this value to move the icon to the left */
   }
 
   .cartTab {
+    background-color: whitesmoke;
     width: 30%;
-    background-color: #fcfefe;
     color: black;
-    position: absolute;
     top: 0;
-    right: 0;
+    position: absolute;
+    right: -30%;
     bottom: 0;
     inset: 0 -800px 0 auto;
     display: grid;
