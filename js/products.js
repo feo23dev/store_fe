@@ -5,6 +5,20 @@ const products = new Products();
 const filterButtons = document.querySelectorAll(".filter-button");
 const dropdown = document.getElementById("sort-dropdown");
 const inputField = document.querySelector(".mb-5");
+const logged_user = new User();
+
+const login = document.getElementById("login");
+
+if (logged_user.email) {
+  login.innerHTML = "Logout";
+  login.addEventListener("click", () => {
+    if (logged_user.email) {
+      localStorage.removeItem("User");
+      alert("You have been logged out");
+      window.location.href = "index.html";
+    }
+  });
+}
 
 dropdown.addEventListener("change", () => {
   products.sortProducts();

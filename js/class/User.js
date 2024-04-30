@@ -151,6 +151,10 @@ class User {
       console.log(error);
     }
   }
+
+  async logout() {
+    localStorage.removeItem("User");
+  }
 }
 
 export default User;

@@ -2,7 +2,18 @@ import User from "./class/User.js";
 
 const logged_user = new User();
 const adminLink = document.getElementById("adminLink");
+const login = document.getElementById("login");
 
+if (logged_user.email) {
+  login.innerHTML = "Logout";
+  login.addEventListener("click", () => {
+    if (logged_user.email) {
+      localStorage.removeItem("User");
+      alert("You have been logged out");
+      window.location.href = "index.html";
+    }
+  });
+}
 if (logged_user.getRole === 2) {
   adminLink.style.display = "block";
 }
