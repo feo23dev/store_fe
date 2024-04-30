@@ -3,6 +3,7 @@ class Checkout {
   constructor() {
     this.cart = new ShoppingCart();
     this.checkoutItems = this.cart.items;
+    this.url = "http://localhost:5000/api/v1/orders";
   }
 
   createProduct() {
@@ -13,69 +14,97 @@ class Checkout {
     globalPriceParagraph.innerHTML = `<span>Total</span> <span class="quantity__total">${this.cart.total}</span>`;
     this.checkoutItems.map((item) => {
       // Create div element with class "ware__item"
-      const wareItemDiv = document.createElement("div");
-      wareItemDiv.classList.add("ware__item");
+      if (item.amount > 0) {
+        const wareItemDiv = document.createElement("div");
+        wareItemDiv.classList.add("ware__item");
 
-      // Create figure element with class "item__figure"
-      const figureElement = document.createElement("figure");
-      figureElement.classList.add("item__figure");
+        // Create figure element with class "item__figure"
+        const figureElement = document.createElement("figure");
+        figureElement.classList.add("item__figure");
 
-      // Create img element with class "item__img" and set src and alt attributes
-      const imgElement = document.createElement("img");
+        // Create img element with class "item__img" and set src and alt attributes
+        const imgElement = document.createElement("img");
 
-      const imageName = item.image.split("/")[4];
+        const imageName = item.image.split("/")[4];
 
-      imgElement.src =
-        "http://localhost:5000" + "/images/products/" + imageName;
+        imgElement.src =
+          "http://localhost:5000" + "/images/products/" + imageName;
 
-      imgElement.classList.add("item__img");
-      // imgElement.src = "images/1.jpg";
-      imgElement.alt = item.product_name;
+        imgElement.classList.add("item__img");
+        // imgElement.src = "images/1.jpg";
+        imgElement.alt = item.product_name;
 
-      // Create figcaption element with class "item__figure__figcaption" and text content
-      const figcaptionElement = document.createElement("figcaption");
-      figcaptionElement.classList.add("item__figure__figcaption");
-      figcaptionElement.textContent = item.product_name;
+        // Create figcaption element with class "item__figure__figcaption" and text content
+        const figcaptionElement = document.createElement("figcaption");
+        figcaptionElement.classList.add("item__figure__figcaption");
+        figcaptionElement.textContent = item.product_name;
 
-      // Create p element with class "item__figure__price"
-      const priceParagraph = document.createElement("p");
-      priceParagraph.classList.add("item__figure__price");
-      priceParagraph.textContent = "$  " + item.price * item.amount;
+        // Create p element with class "item__figure__price"
+        const priceParagraph = document.createElement("p");
+        priceParagraph.classList.add("item__figure__price");
+        priceParagraph.textContent = "$  " + item.price * item.amount;
 
-      // Create div element with class "item__cont__btns"
-      const btnsDiv = document.createElement("div");
-      btnsDiv.classList.add("item__cont__btns");
+        // Create div element with class "item__cont__btns"
+        const btnsDiv = document.createElement("div");
+        btnsDiv.classList.add("item__cont__btns");
 
-      // Create label element with class "ware__hide-label", set "for" attribute, and text content
-      const labelElement = document.createElement("label");
-      labelElement.classList.add("ware__hide-label");
-      labelElement.setAttribute("for", "backbag-qty");
+        // Create label element with class "ware__hide-label", set "for" attribute, and text content
+        const labelElement = document.createElement("label");
+        labelElement.classList.add("ware__hide-label");
+        labelElement.setAttribute("for", "backbag-qty");
 
-      // Create input element with specified attributes
-      const inputElement = document.createElement("input");
-      inputElement.type = "number";
-      inputElement.name = "backbag-qty";
-      inputElement.id = "backbag-qty";
-      inputElement.classList.add("ware__input", "ware__input--item-1");
-      inputElement.min = 1;
-      inputElement.value = item.amount;
+        // Create input element with specified attributes
+        const inputElement = document.createElement("input");
+        inputElement.type = "number";
+        inputElement.name = "backbag-qty";
+        inputElement.id = "backbag-qty";
+        inputElement.classList.add("ware__input", "ware__input--item-1");
+        inputElement.min = 1;
+        inputElement.value = item.amount;
 
-      // Append created elements as per the structure
+        // Append created elements as per the structure
 
-      btnsDiv.appendChild(labelElement);
-      btnsDiv.appendChild(inputElement);
+        btnsDiv.appendChild(labelElement);
+        btnsDiv.appendChild(inputElement);
 
-      figureElement.appendChild(imgElement);
-      figureElement.appendChild(figcaptionElement);
-      figureElement.appendChild(priceParagraph);
-      figureElement.appendChild(btnsDiv);
+        figureElement.appendChild(imgElement);
+        figureElement.appendChild(figcaptionElement);
+        figureElement.appendChild(priceParagraph);
+        figureElement.appendChild(btnsDiv);
 
-      wareItemDiv.appendChild(figureElement);
+        wareItemDiv.appendChild(figureElement);
 
-      // Append the created "ware__item" div inside the existing aside element with class "ware"
-      asideElement.appendChild(wareItemDiv);
+        // Append the created "ware__item" div inside the existing aside element with class "ware"
+        asideElement.appendChild(wareItemDiv);
+      }
     });
     asideElement.appendChild(globalPriceParagraph);
+  }
+
+  async sendOrder(formData, shoppingCart) {
+    console.log("Form data from Checkout Class", formData);
+    console.log("Shopping Cart from Checkout Class", shoppingCart);
+
+    const combinedData = {
+      formData: formData,
+      shoppingCart: shoppingCart,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(combinedData),
+    };
+
+    try {
+      const response = await fetch(this.url, options);
+      console.log("Response from the server", response);
+      const data = await response.json();
+      alert("Order sent successfully");
+    } catch (error) {
+      console.log("Error sending order", error);
+    }
   }
 }
 

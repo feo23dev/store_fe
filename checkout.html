@@ -26,8 +26,12 @@
   <body>
     <main id="main">
       <h1>Order Details</h1>
+
       <aside class="ware">
         <div class="ware__item"></div>
+        <span id="product-span"
+          ><a href="/products.html">Back To Products</a></span
+        >
       </aside>
 
       <form class="form">
@@ -41,7 +45,7 @@
               name="e-mail"
               id="e-mail"
               class="input input--text"
-              placeholder="your phone number"
+              placeholder="your email"
               required
             />
           </p>
@@ -53,7 +57,7 @@
               name="phone-number"
               id="phone-num"
               class="input input--text"
-              placeholder="your email address"
+              placeholder="your phone number"
               maxlength="14"
               pattern="\(\w{3}\) \w{3}[ -]\w{4}"
               required
@@ -116,6 +120,7 @@
                     class="input select__shipping"
                   >
                     <option value="" selected>Your country...</option>
+                    <option value="Finland">Finland</option>
                     <option value="Denmark">Denmark</option>
                     <option value="Sweden">Sweden</option>
                     <option value="Norway">Norway</option>
@@ -143,16 +148,11 @@
             </div>
           </div>
         </fieldset>
-        <p class="field field__saveInfo">
-          <input
-            type="checkbox"
-            name="s-info"
-            id="save-info"
-            class="saveInfo--pointer"
-          />
-        </p>
-        <div class="container__form__btn">
-          <button type="submit" class="form__btn">Checkout</button>
+
+        <div>
+          <div class="container__form__btn">
+            <button type="submit" class="form__btn">Checkout</button>
+          </div>
         </div>
       </form>
     </main>
