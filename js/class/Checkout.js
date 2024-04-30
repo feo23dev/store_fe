@@ -99,7 +99,7 @@ class Checkout {
 
     try {
       const response = await fetch(this.url, options);
-      console.log("Response from the server", response);
+
       const data = await response.json();
       alert("Order sent successfully");
     } catch (error) {

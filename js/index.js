@@ -1,24 +1,26 @@
 import User from "./class/User.js";
 
-const logged_user = new User();
+const user = new User();
 const adminLink = document.getElementById("adminLink");
 const login = document.getElementById("login");
 
-if (logged_user.email) {
+console.log("LOOGED IN : ", user.isLoggedIn);
+
+if (user.isLoggedIn) {
   login.innerHTML = "Logout";
   login.addEventListener("click", () => {
-    if (logged_user.email) {
+    if (user.email) {
       localStorage.removeItem("User");
       alert("You have been logged out");
       window.location.href = "index.html";
     }
   });
 }
-if (logged_user.getRole === 2) {
+if (user.getRole === 2) {
   adminLink.style.display = "block";
 }
 
-console.log("CURRENTLY LOGGED USER IS", logged_user.email);
+console.log("CURRENTLY LOGGED USER IS", user.email);
 adminLink.addEventListener("click", async (event) => {
   console.log("Link clicked");
   event.preventDefault();
@@ -26,7 +28,7 @@ adminLink.addEventListener("click", async (event) => {
     const response = await fetch("http://localhost:5000/api/v1/users/admin", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${logged_user.getToken}`,
+        Authorization: `Bearer ${user.getToken}`,
       },
     });
     const json = await response.json();

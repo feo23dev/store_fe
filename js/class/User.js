@@ -27,6 +27,9 @@ class User {
   get id() {
     return this.#id;
   }
+  get isLoggedIn() {
+    return this.#id !== undefined ? true : false;
+  }
 
   get email() {
     return this.#email;

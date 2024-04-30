@@ -4,8 +4,6 @@ import Checkout from "./class/Checkout.js";
 const checkOut = new Checkout();
 const shoppingCart = new ShoppingCart();
 
-const form_button = document.querySelector(".form__button");
-
 console.log("CHECKOUT", checkOut);
 if (checkOut.cart.items.length === 0) {
   alert("You have no items in your cart");
