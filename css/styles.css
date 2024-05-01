@@ -437,7 +437,8 @@ copyright {
     position: absolute;
     top: 70px;
     left: 0;
-    background: black;
+    background: whitesmoke;
+
     width: 100%;
     overflow: hidden;
     transition: max-height 0.5s;
@@ -451,7 +452,7 @@ copyright {
   }
 
   nav ul li a {
-    color: white;
+    color: black;
   }
 
   .menu-icon {
