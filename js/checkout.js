@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const city = document.getElementById("city").value;
     const country = document.getElementById("country").value;
     const postalCode = document.getElementById("zip-code").value;
-    const saveInfo = document.getElementById("save-info").checked;
+
     // Create an object with collected data
     const formData = {
       email: email,
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       city: city,
       country: country,
       postalCode: postalCode,
-      saveInfo: saveInfo,
+
       total: checkOut.cart.total,
     };
     console.log("checkoutJS shopping cart", shoppingCart);

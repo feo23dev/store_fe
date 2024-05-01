@@ -217,8 +217,9 @@ class Products {
       cardWrapper.appendChild(card);
       const addToCartButton = document.getElementById("addtocartbutton");
       addToCartButton.addEventListener("click", () => {
-        this.cart.addItemToCart(product);
         body.classList.add("showCart");
+        this.cart.addItemToCart(product);
+
         this.cart.renderData();
       });
     } catch (error) {}

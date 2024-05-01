@@ -7,6 +7,10 @@ class ShoppingCart {
   addItemToLocalStorage() {
     localStorage.setItem("shoppingCart", JSON.stringify(this.items));
   }
+  updateItems() {
+    this.items = this.getItemsFromStorage();
+    this.setTotal();
+  }
 
   refreshLocalStorage() {
     const filteredItems = this.items.filter((item) => item.amount > 0);
@@ -31,6 +35,7 @@ class ShoppingCart {
       this.items.push(item);
     }
     this.#total += Number(item.price);
+
     this.renderData();
     // Update the local storage
 
@@ -38,6 +43,7 @@ class ShoppingCart {
   }
 
   setTotal() {
+    this.#total = 0;
     this.items.forEach((item) => {
       this.#total += Number(item.price) * item.amount;
     });

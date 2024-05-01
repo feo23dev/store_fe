@@ -32,9 +32,11 @@ let iconCart = document.querySelector(".icon-cart");
 let body = document.querySelector("body");
 
 let checkOut = document.querySelector(".checkOut");
+
 iconCart.addEventListener("click", function () {
   body.classList.toggle("showCart");
-
+  console.log(localStorage.getItem("shoppingCart"));
+  shoppingCart.updateItems();
   shoppingCart.renderData();
 });
 
