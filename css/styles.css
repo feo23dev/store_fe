@@ -68,6 +68,11 @@ input {
   cursor: pointer;
   text-align: left;
 }
+.delete-button:hover {
+  outline: none;
+  color: red;
+  color: black;
+}
 .button-hide {
   display: none;
 }
