@@ -1,4 +1,5 @@
 import ShoppingCart from "./ShoppingCart.js";
+import User from "./User.js";
 class Products {
   #backend_url = "http://localhost:5000/api/v1/products";
   #img_url = "http://localhost:5000";
@@ -8,6 +9,7 @@ class Products {
   constructor() {
     this.#state = [];
     this.cart = new ShoppingCart();
+    this.user = new User();
   }
 
   getProducts() {
@@ -87,6 +89,22 @@ class Products {
       paragraphContainer.firstChild
     );
     productsToRender.forEach((product) => {
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.classList.add("delete-button");
+      deleteButton.addEventListener("click", async () => {
+        console.log("DELETE BUTTON CLICKED", product.id);
+        try {
+          this.deleteProduct(product.id, this.user.getToken);
+          alert("Product deleted successfully");
+        } catch (error) {
+          alert("Error deleting product", error);
+        }
+      });
+      if (this.user.getRole != 2) {
+        deleteButton.classList.add("button-hide");
+      }
+
       const productItem = document.createElement("div");
       productItem.classList.add(
         "products-item",
@@ -133,7 +151,7 @@ class Products {
       productItem.appendChild(image);
       productItem.appendChild(icon);
       productItem.appendChild(itemInfoDiv);
-
+      productItem.appendChild(deleteButton);
       products_container.appendChild(productItem);
     });
   }
@@ -271,6 +289,25 @@ class Products {
       return json;
     } catch (error) {
       console.log("ERROR FETCHING PRODUCT BY ID", error);
+    }
+  }
+
+  async deleteProduct(id, userToken) {
+    try {
+      const response = await fetch(`${this.#backend_url}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        alert("Product deleted successfully", json.data);
+      }
+    } catch (error) {
+      console.log("ERROR DELETING PRODUCT", error);
+      throw error;
     }
   }
 }

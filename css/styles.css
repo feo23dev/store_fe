@@ -58,6 +58,19 @@ input {
 #products-container {
   margin-top: 2rem;
 }
+
+.delete-button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  font-size: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: left;
+}
+.button-hide {
+  display: none;
+}
 @media (max-width: 770px) {
   img {
     width: 100%;
