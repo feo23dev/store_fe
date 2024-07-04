@@ -3,6 +3,7 @@
 ## Overview
 
 Store Frontend is a vanilla JavaScript application designed as the frontend for an e-commerce platform. It provides user interfaces for browsing products, managing a shopping cart, user authentication, and administrative functionalities.
+Preview @ https://youtu.be/02-oxwvu1CM
 
 ## Features
 
